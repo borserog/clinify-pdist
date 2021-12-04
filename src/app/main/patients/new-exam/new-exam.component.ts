@@ -4,11 +4,12 @@ import { Patient } from 'src/app/main/patients/shared/model/patient.model';
 import { MessageService } from '../../../shared/services/snackbar/message.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { switchMap, take } from 'rxjs/operators';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
-import {ExamRequest} from '../../exams/shared/model/exam.model';
-import {ExamFirestoreService} from '../../exams/shared/service/exam-firestore.service';
+import { ExamRequest } from '../../exams/shared/model/exam.model';
+import { ExamFirestoreService } from '../../exams/shared/service/exam-firestore.service';
 import { SmsService } from 'src/app/shared/services/sms/sms.service';
+import { ExamMailService } from '../../exams/shared/service/exam-mail.service';
 
 @Component({
   selector: 'app-new-exam',
@@ -40,8 +41,10 @@ export class NewExamComponent implements OnInit {
     private fb: FormBuilder,
     private depExamService: ExamService,
     private examService: ExamFirestoreService,
-    private smsService: SmsService
-  ) { }
+    private smsService: SmsService,
+    private examNotification: ExamMailService
+  ) {
+  }
 
   ngOnInit(): void {
     this.minExamDate = new Date().toISOString().slice(0, 10);
@@ -57,14 +60,18 @@ export class NewExamComponent implements OnInit {
     };
 
     this.examService.registerExam(examRequest).pipe(
+      switchMap(() => {
+        return this.examNotification.sendExamEmailNotification({
+          name: examRequest.patient.name,
+          email: examRequest.patient.email,
+          code: checkInCode,
+          appointmentDate: examRequest.date
+        });
+      }),
       take(1)
     )
       .subscribe(() => {
           this.message.open(`Consulta cadastrada com Sucesso!`, MessageLevel.SUCCESS);
-          this.smsService.sendSms({
-            phone: this.patient.phone,
-            body: `Utilize o código ${checkInCode} para fazer check-in em https://clinify-deps2021.netlify.app/check-in`
-          }).subscribe();
           this.dialogRef.close();
         },
         (error) => {
