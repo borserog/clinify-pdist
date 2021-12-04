@@ -4,7 +4,8 @@ export interface Patient {
   birthDate: Date;
   healthPlan: string;
   phone: string;
+  email: string;
 }
 
-export type PatientRequest = Omit<Patient, 'id'>;
+export type NewPatientRequest = Omit<Patient, 'id'>;
 

@@ -23,6 +23,16 @@
             <td mat-cell *matCellDef="let patient">{{ patient.name }}</td>
           </ng-container>
 
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>e-mail</th>
+            <td mat-cell *matCellDef="let patient">
+              <span *ngIf="patient?.email; else noEmail">{{ patient.email }}</span>
+              <ng-template #noEmail>
+                <span><i>Indisponível</i></span>
+              </ng-template>
+            </td>
+          </ng-container>
+
           <ng-container matColumnDef="healthPlan">
             <th mat-header-cell *matHeaderCellDef>Convênio</th>
             <td mat-cell *matCellDef="let patient">{{ patient.healthPlan }}</td>
@@ -30,7 +40,12 @@
 
           <ng-container matColumnDef="phone">
             <th mat-header-cell *matHeaderCellDef>Contato</th>
-            <td mat-cell *matCellDef="let patient">{{ patient?.phone ? patient.phone : '' }}</td>
+            <td mat-cell *matCellDef="let patient">
+              <span *ngIf="patient?.phone; else noPhone">{{ patient.phone }}</span>
+              <ng-template #noPhone>
+                <span><i>Indisponível</i></span>
+              </ng-template>
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="birthDate">

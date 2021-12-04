@@ -14,6 +14,7 @@ interface SignUpControls {
   birthDate: AbstractControl;
   healthPlan: AbstractControl;
   phone: AbstractControl;
+  email: AbstractControl;
 }
 
 @Component({
@@ -42,14 +43,16 @@ export class NewPatientComponent implements OnInit, OnDestroy {
       name: [''],
       birthDate: [''],
       healthPlan: [''],
-      phone: ['']
+      phone: [''],
+      email: ['', Validators.email]
     });
 
     this.controls = {
       name: this.signUpForm.get('name'),
       birthDate: this.signUpForm.get('birthDate'),
       healthPlan: this.signUpForm.get('healthPlan'),
-      phone: this.signUpForm.get('phone')
+      phone: this.signUpForm.get('phone'),
+      email: this.signUpForm.get('email')
     };
   }
 

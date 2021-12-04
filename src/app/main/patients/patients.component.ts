@@ -27,7 +27,7 @@ export class PatientsComponent implements OnInit {
 
   status$ = new BehaviorSubject<ListingStatus>(listingStatusInitialState);
 
-  columnsToDisplay = ['patient', 'healthPlan', 'phone', 'birthDate', 'actionsRow'];
+  columnsToDisplay = ['patient', 'email', 'healthPlan', 'phone', 'birthDate', 'actionsRow'];
 
   constructor(
     private patientFirestoreService: PatientFirestoreService,
@@ -43,7 +43,9 @@ export class PatientsComponent implements OnInit {
   }
 
   openNewPatientDialog(): void {
-    const dialogRef = this.dialog.open(NewPatientComponent);
+    const dialogRef = this.dialog.open(NewPatientComponent, {
+      width: '600px'
+    });
 
     dialogRef.afterClosed().pipe(take(1)).subscribe(() => {
       this.loadPatients();
