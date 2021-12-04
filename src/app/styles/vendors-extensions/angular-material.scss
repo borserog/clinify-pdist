@@ -1,0 +1,33 @@
+.success-snackbar {
+  background-color: $app-success;
+}
+
+.danger-snackbar {
+  background-color: $app-danger;
+}
+
+.info-snackbar {
+  background-color: $app-info;
+}
+
+.mat-progress-bar {
+  margin: 2rem 0 !important;
+}
+
+.mat-drawer-inner-container {
+  width: 20rem !important;
+}
+
+button, a {
+  border-radius: 25px !important;
+}
+
+.mat-dialog-container {
+  border-radius: 25px !important;
+}
+
+.mat-card {
+  border-radius: 25px !important;
+  padding: 30px !important;
+  box-shadow: 2px 2px 15px 6px rgb(0 0 0 / 33%) !important;
+}

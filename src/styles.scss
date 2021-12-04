@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+// DO NOT CHANGE ORDER OF IMPORTS
+@import "app/styles/abstracts/mixins";
+@import "app/styles/abstracts/variables";
+
+@import "app/styles/base/base";
+@import "app/styles/base/animations";
+@import "app/styles/base/typography";
+@import "app/styles/base/utilities";
+
+@import "app/styles/components/form";
+@import "app/styles/components/buttons";
+@import './app/styles/vendors-extensions/angular-material.scss';
+
+@import '~@angular/material/theming';
+
+
+@include mat-core();
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Barlow, SansSerif'
+);
+
+@include mat-base-typography($custom-typography);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($custom-typography);
+
+// Pegar temas do material angular
+// https://stackoverflow.com/questions/46760306/get-material-2-theme-color-scheme-palette-for-other-elements
+:root {
+  --top-margin: 10rem;
+  --app-default-font-size: 1.6rem;
+  --app-primary: #673AB7;
+  --app-secondary: #FFD740;
+  --app-white-text: #f6f6f6;
+  --app-danger-color: #d50000;
+}

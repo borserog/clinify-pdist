@@ -1,0 +1,54 @@
+@import './../../styles/abstracts/_mixins.scss';
+@import './../../styles/abstracts/_variables.scss';
+@import './../../styles/base/_animations.scss';
+
+.card-container {
+  position: absolute;
+  top: 10rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rem;
+  height: 45rem;
+
+  .back-button {
+    position: absolute;
+  }
+
+  mat-card {
+    width: 100%;
+    @include loginMatCards;
+
+    mat-card-title {
+      text-align: center;
+    }
+
+    mat-card-header {
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    mat-card-content {
+      .form-container {
+        padding-top: 5rem;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        gap: 1rem;
+
+        &__actions {
+          padding-top: 1.5rem;
+          display: grid;
+          grid-template-rows: repeat(2, 1fr);
+          align-items: center;
+
+          &__new-user {
+            text-align: center;
+          }
+        }
+
+      }
+
+    }
+  }
+
+}
+

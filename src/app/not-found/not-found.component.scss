@@ -1,0 +1,9 @@
+@import './../styles/abstracts/_mixins.scss';
+
+mat-card {
+  @include forceCenter();
+}
+
+mat-icon {
+  text-align: center;
+}

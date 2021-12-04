@@ -1,0 +1,71 @@
+<h1 mat-dialog-title>Cadastro de Paciente</h1>
+<div mat-mat-dialog-content>
+  <form class="form-container" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <div class="input-field-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input
+          autocomplete="off"
+          formControlName="name"
+          matInput
+          type="text"
+          maxlength="20"
+          placeholder="Nome"
+          required
+        />
+        <mat-error>Forneça um nome válido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Data de nascimento</mat-label>
+        <input
+          autocomplete="off"
+          formControlName="birthDate"
+          matInput
+          type="date"
+          minlength="10"
+          maxlength="10"
+          placeholder="dd/MM/yyyy"
+          required
+        />
+        <mat-error>Forneça uma data válida</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Convenio</mat-label>
+        <input
+          autocomplete="off"
+          formControlName="healthPlan"
+          matInput
+          type="text"
+          placeholder="Convenio"
+          maxlength="20"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Telefone</mat-label>
+        <input
+          autocomplete="off"
+          formControlName="phone"
+          matInput
+          type="tel"
+          placeholder="83999999999"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions class="form-container__actions" align="end">
+      <button
+        mat-raised-button
+        type="submit"
+        color="primary"
+        [disabled]="!isFormValid()"
+      >
+        Cadastrar
+      </button>
+    </div>
+  </form>
+</div>

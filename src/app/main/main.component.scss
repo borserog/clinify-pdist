@@ -1,0 +1,31 @@
+mat-sidenav {
+  border: 0 !important;
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+.main-container {
+  height: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.sidenav {
+  background: #020024;
+  background: linear-gradient(69deg, #020024 0%, #010009 -17%, black -5%, #1c2f73 57%);
+  box-shadow: 0 0 20px 6px rgba(0, 0, 0, 0.5);
+}
+
+.app-logo-container {
+  max-height: 10rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    height: 6rem;
+  }
+}

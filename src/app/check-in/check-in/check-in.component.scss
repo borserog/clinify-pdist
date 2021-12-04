@@ -1,0 +1,75 @@
+@import './../../styles/abstracts/_mixins.scss';
+@import './../../styles/abstracts/_variables.scss';
+@import './../../styles/base/_animations.scss';
+
+.card-container {
+  position: absolute;
+  top: 10rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rem;
+  height: 45rem;
+
+  mat-card {
+    width: 100%;
+    @include loginMatCards;
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      height: 7.5rem;
+      margin-bottom: 2rem;
+
+      img {
+      }
+    }
+
+    mat-card-title {
+      text-align: center;
+    }
+
+    mat-card-header {
+      width: fit-content;
+      margin: 0 auto;
+      display: flex;
+      flex-flow: column nowrap;
+    }
+
+    mat-card-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column nowrap;
+      margin: 2.5rem 0;
+
+      .message-row {
+        width: 25rem;
+        min-height: 8rem;
+        margin-top: 2.5rem;
+        text-overflow: clip;
+        overflow: hidden;
+        word-break: break-word;
+        text-align: center;
+
+        p {
+          margin: 0;
+        }
+      }
+
+      .check-in-btn-container {
+        width: 25rem;
+
+        button {
+          width: 100%;
+        }
+      }
+
+      mat-form-field {
+        width: 25rem;
+      }
+
+    }
+  }
+
+}
+

@@ -1,0 +1,35 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-image: url('./../../../assets/asanoha-400px.png');
+}
+
+html {
+  font-size: 62.5%;
+  @include respond(tab-land) {
+      font-size: 56.25%;
+  }
+
+  @include respond(tab-port) {
+      font-size: 50%;
+  }
+
+  @include respond(big-desktop) {
+      font-size: 75%;
+  }
+}
+
+section {
+  padding: 0 3rem 3rem 3rem;
+}
+

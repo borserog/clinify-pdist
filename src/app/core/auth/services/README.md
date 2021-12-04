@@ -1,0 +1,2 @@
+- Folder used for singleton services
+-- https://angular.io/guide/singleton-services

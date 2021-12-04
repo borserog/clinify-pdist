@@ -1,0 +1,69 @@
+@import './../../styles/abstracts/_mixins.scss';
+
+.app-card-header {
+  @include routesHeader();
+}
+
+mat-card {
+  table {
+    width: 100%;
+
+    .mat-column-patient {
+      width: 40%;
+    }
+
+    .mat-column-healthPlan {
+      width: 15%;
+    }
+
+    .mat-column-checkInCode {
+      width: 15%;
+    }
+
+    .mat-column-date {
+      width: 10%;
+    }
+
+    .mat-column-checkIn {
+      width: 25%;
+
+      .checkIn {
+        &__data {
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: flex-start;
+          align-items: center;
+
+          &--date {
+            margin-left: 1rem;
+          }
+        }
+      }
+    }
+
+    .mat-column-actionsRow {
+      width: 10%;
+
+      .actions-row {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  .muted-row {
+    background-color: #eee;
+
+    & > *,
+    .mat-icon {
+      color: darken(#eee, 15%) !important;
+      pointer-events: none;
+    }
+  }
+}
+
+.no-exam {
+  text-align: center;
+  color: #ccc;
+}

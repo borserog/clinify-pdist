@@ -1,0 +1,90 @@
+<div class="card-container">
+  <mat-card>
+    <button mat-icon-button class="back-button" [routerLink]="['/login']">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <mat-card-header>
+      <mat-card-title>Cadastro</mat-card-title>
+      <mat-card-subtitle
+        >Cadastro de Usuário</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <form
+        class="form-container"
+        [formGroup]="signUpForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Usuário</mat-label>
+          <input
+            autocomplete="off"
+            formControlName="username"
+            matInput
+            type="text"
+            maxlength="20"
+            placeholder="Nome"
+            required
+          />
+          <mat-error>Forneça um nome de usuário válido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            autocomplete="off"
+            formControlName="email"
+            matInput
+            type="email"
+            maxlength="40"
+            placeholder="Email"
+            required
+          />
+          <mat-error>Forneça um email válido</mat-error>
+        </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input
+              autocomplete="off"
+              formControlName="password"
+              matInput
+              type="password"
+              placeholder="Senha"
+              maxlength="20"
+              required
+            />
+            <mat-error>Forneça uma senha válida</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Repita a senha</mat-label>
+            <input
+              autocomplete="off"
+              formControlName="password2"
+              matInput
+              type="password"
+              placeholder="Repita a senha"
+              maxlength="20"
+              required
+            />
+            <mat-error>Forneça uma senha válida</mat-error>
+          </mat-form-field>
+        <div class="form-container__actions">
+          <button
+            mat-raised-button
+            type="submit"
+            color="primary"
+            [disabled]="!isFormValid()"
+          >
+            Cadastrar
+          </button>
+          <mat-error *ngIf="arePasswordsTouched() && !arePasswordsMatching()" >Senhas não são iguais</mat-error>
+        </div>
+      </form>
+    </mat-card-content>
+
+    <mat-card-footer>
+      <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+    </mat-card-footer>
+  </mat-card>
+</div>
