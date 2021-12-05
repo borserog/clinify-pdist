@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ExamMailService {
-  private RESOURCE_URL = `https://clinify-pdist.herokuapp.com/sendPaciente`;
+  private RESOURCE_URL = `https://clinify-pdist.herokuapp.com//api/sendPaciente`;
 
   constructor(
     private httpClient: HttpClient
