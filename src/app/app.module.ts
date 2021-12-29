@@ -15,7 +15,7 @@ import { reducers, metaReducers } from './reducers';
 import { CheckInModule } from './check-in/check-in.module';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = { url: 'https://clinifiy-notification-ms.herokuapp.com:3000', options: {} };
 
 @NgModule({
   declarations: [
