@@ -1,6 +1,6 @@
 import { MessageLevel } from './message-level.enum';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class MessageService {
     private matSnackBar: MatSnackBar
   ) { }
 
-  open(message: string, level: MessageLevel, action?: string): void {
-    this.matSnackBar.open(message, action, {
+  open(message: string, level: MessageLevel, action?: string): MatSnackBarRef<any> {
+    return this.matSnackBar.open(message, action, {
       duration: this.SNACKBAR_DURATION_MS,
       panelClass: [ this.getCssClassForPanel(level) ]
     });

@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import * as fromAuth from './reducers';
 
-
-
 @NgModule({
   declarations: [],
   imports: [

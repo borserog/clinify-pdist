@@ -6,6 +6,7 @@ import {
   ExamServiceMessage
 } from '../../main/exams/shared/service/exam-firestore.service';
 import { map, startWith } from 'rxjs/operators';
+import {WebSocketNotificationService} from '../../shared/services/web-socket-notification.service';
 
 @Component({
   selector: 'app-check-in',
@@ -17,7 +18,8 @@ export class CheckInComponent implements OnInit {
   message$;
 
   constructor(
-    private examService: ExamFirestoreService
+    private examService: ExamFirestoreService,
+    private webSocketNotificationService: WebSocketNotificationService
   ) {
   }
 
@@ -29,6 +31,8 @@ export class CheckInComponent implements OnInit {
 
       if (message.type === ExamMessageTypes.SUCCESS) {
         const formattedDate = new Date(message.data.date).toLocaleString().slice(0, 11);
+
+        this.webSocketNotificationService.sendNotification(`Check-in for Patient Code ${this.checkInCode.value}`);
 
         return `Olá ${message.data.patient.name}!\nCheck-in para o atendimento do dia ${formattedDate} realizado com sucesso`;
       }
