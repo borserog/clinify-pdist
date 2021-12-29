@@ -5,9 +5,6 @@
   </div>
   <mat-card>
     <mat-card-content>
-      <button mat-icon-button color="primary" (click)="refresh()">
-        <mat-icon>refresh</mat-icon>
-      </button>
       <ng-container *ngIf="(exams$ | async) as exams; else loading">
         <ng-container *ngIf="exams.length !== 0; else empty"
         >

@@ -1,11 +1,12 @@
-import { Observable, Subject } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs/operators';
-import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
-import { MessageService } from 'src/app/shared/services/snackbar/message.service';
-import { Exam } from './shared/model/exam.model';
-import { ExamService } from './shared/service/exam.service';
+import {noop, Observable, Subject} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {switchMap, take, tap} from 'rxjs/operators';
+import {MessageLevel} from 'src/app/shared/services/snackbar/message-level.enum';
+import {MessageService} from 'src/app/shared/services/snackbar/message.service';
+import {Exam} from './shared/model/exam.model';
+import {ExamService} from './shared/service/exam.service';
 import {ExamFirestoreService} from './shared/service/exam-firestore.service';
+import {WebSocketNotificationService} from '../../shared/services/web-socket-notification.service';
 
 @Component({
   selector: 'app-exams',
@@ -21,13 +22,25 @@ export class ExamsComponent implements OnInit {
   constructor(
     private depExamService: ExamService,
     private examService: ExamFirestoreService,
-    private snackbar: MessageService
-  ) { }
+    private snackbar: MessageService,
+    private webSocketNotification: WebSocketNotificationService
+  ) {
+  }
 
   ngOnInit(): void {
     this.exams$ = this.examsSubject;
 
     this.loadExams();
+
+    this.webSocketNotification.updateExamListing.pipe(
+      switchMap(() => {
+        return this.snackbar.open('Novo Check-in Foi Realizado', MessageLevel.INFO, 'Recarregar').onAction().pipe(
+          tap(() => {
+            this.loadExams();
+          })
+        );
+      })
+    ).subscribe(noop);
   }
 
   startExam(exam: Exam): void {
@@ -46,12 +59,16 @@ export class ExamsComponent implements OnInit {
 
   private loadExams(): void {
     this.examService.getAll().pipe(take(1))
-    .subscribe((exams: Exam[]): void => {
-      this.examsSubject.next(exams);
-    });
+      .subscribe((exams: Exam[]): void => {
+        this.examsSubject.next(exams);
+      });
   }
 
   refresh(): void {
     this.loadExams();
+  }
+
+  sendMessage(): void {
+    this.webSocketNotification.sendNotification(`this is a test message`);
   }
 }
